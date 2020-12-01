@@ -36,7 +36,7 @@ def createIconBorder(icon, border_size, border_color):
 
 
 def add_subtitle(text,xy,font_size,font_color=(0,0,0),stroke=0,stroke_color=(0, 0, 0),shadow=(0, 0),shadow_color=(25, 25, 25)):
-    font="font.ttf"
+    font=os.path.join(os.path.dirname(__file__), 'font.ttf')
     stroke_width = stroke
     xy = list(xy)
     W, H = bg.width, bg.height
