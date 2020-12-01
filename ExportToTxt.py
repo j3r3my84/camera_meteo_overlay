@@ -1,8 +1,9 @@
 import PyWeather
 import configparser
+import os
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
 defaultConf = config['Default']
 fileLocation = defaultConf['file_path']+defaultConf['file_name']
 f = open(fileLocation,'w+')

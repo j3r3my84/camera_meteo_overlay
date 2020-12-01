@@ -2,8 +2,13 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 from io import BytesIO
 import PyWeather
 import requests
+import configparser
+import os
 
 bg = Image.new('RGBA', (1024, 1024), color = (0,0,0,0))
+config = configparser.ConfigParser()
+config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
+defaultConf = config['Default']
 
 def addIconToImage():
     icon = Image.open(BytesIO(requests.get('https://openweathermap.org/img/wn/'+ PyWeather.getIconName() +'@2x.png').content))
@@ -93,4 +98,4 @@ def createImage(position = "left"):
 
 
 image = createImage(position="right")
-image.save('img.png')
+image.save(defaultConf['file_path']+defaultConf['image_name'])

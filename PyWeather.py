@@ -3,13 +3,14 @@ import requests
 import configparser
 import datetime
 from datetime import timezone
+import os
 
 config = configparser.ConfigParser()
 translation = configparser.ConfigParser()
-config.read('config.ini')
+config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
 defaultConf = config['Default']
 unitsConf = config[defaultConf['units']]
-translation.read(defaultConf['language']+'.lang')
+translation.read(os.path.join(os.path.dirname(__file__), defaultConf['language']+'.lang'))
 wCond = translation['condition codes']
 tDef = translation['Default']
 
